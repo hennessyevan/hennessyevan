@@ -107,27 +107,27 @@ canvas {
     .text .social-icons a {
       cursor: pointer;
       pointer-events: all;
-      -webkit-animation: pulse 15s ease-in-out infinite;
-      animation: pulse 15s ease-in-out infinite;
       margin-left: 1em; }
       .text .social-icons a:first-child {
         margin-left: 0; }
-      .text .social-icons a:nth-child(1) {
+      .text .social-icons a:nth-child(1) svg {
         -webkit-animation-delay: 50ms;
         animation-delay: 50ms; }
-      .text .social-icons a:nth-child(2) {
+      .text .social-icons a:nth-child(2) svg {
         -webkit-animation-delay: 100ms;
         animation-delay: 100ms; }
-      .text .social-icons a:nth-child(3) {
+      .text .social-icons a:nth-child(3) svg {
         -webkit-animation-delay: 150ms;
         animation-delay: 150ms; }
-      .text .social-icons a:nth-child(4) {
+      .text .social-icons a:nth-child(4) svg {
         -webkit-animation-delay: 200ms;
         animation-delay: 200ms; }
-      .text .social-icons a:nth-child(5) {
+      .text .social-icons a:nth-child(5) svg {
         -webkit-animation-delay: 250ms;
         animation-delay: 250ms; }
       .text .social-icons a svg {
+        -webkit-animation: pulse 15s ease-in-out infinite;
+        animation: pulse 15s ease-in-out infinite;
         -webkit-transition: 0.5s ease-in;
         -o-transition: 0.5s ease-in;
         transition: 0.5s ease-in; }
