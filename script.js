@@ -1,7 +1,7 @@
 "use strict";
 
 anime.timeline({ loop: false }).add({
-	targets: ".title .letter, .instructions",
+	targets: ".title .letter, .instructions, .social-icons",
 	translateY: [100, 0],
 	translateZ: 0,
 	opacity: [0, 1],
@@ -580,6 +580,7 @@ window.setInterval(function() {
 }, 4000);
 
 function initSplat(amount) {
+	config.SPLAT_RADIUS = 0.045;
 	for (var i = 0; i < amount; i++) {
 		var color = [10, 10, 10];
 		var x = canvas.width / 2;
@@ -587,6 +588,10 @@ function initSplat(amount) {
 		var dx = 0;
 		var dy = canvas.height;
 		splat(x, y, dx, dy, color);
+	}
+
+	if (canvas.width < 768) {
+		config.SPLAT_RADIUS = 0.005;
 	}
 }
 
@@ -613,6 +618,12 @@ function resizeCanvas() {
 		canvas.width = canvas.clientWidth;
 		canvas.height = canvas.clientHeight;
 		initFramebuffers();
+	}
+
+	if (canvas.width < 768) {
+		config.SPLAT_RADIUS = 0.005;
+	} else {
+		config.SPLAT_RADIUS = 0.045;
 	}
 }
 

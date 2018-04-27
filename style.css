@@ -102,9 +102,11 @@ canvas {
     display: inline-block;
     width: 100%;
     text-align: center;
-    margin-top: 1em; }
+    margin-top: 1em;
+    pointer-events: none; }
     .text .social-icons a {
       cursor: pointer;
+      pointer-events: all;
       -webkit-animation: pulse 15s ease-in-out infinite;
       animation: pulse 15s ease-in-out infinite;
       margin-left: 1em; }
@@ -139,11 +141,11 @@ canvas {
     color: #00ab6c; }
 
 @media screen and (max-width: 768px) {
-  .title {
+  .text .title {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-auto-flow: row;
     font-size: 5em; }
-  .space {
+  .text .space {
     display: none; } }
 
 @-webkit-keyframes fade-out {
