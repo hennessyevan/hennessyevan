@@ -20,7 +20,8 @@ body {
 
 canvas {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  cursor: crosshair; }
 
 .text {
   position: absolute;
@@ -29,7 +30,8 @@ canvas {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  color: rgba(15, 15, 15, 0.8); }
+  color: rgba(15, 15, 15, 0.8);
+  pointer-events: none; }
   .text .title {
     color: rgba(15, 15, 15, 0.8);
     pointer-events: none;
@@ -41,6 +43,7 @@ canvas {
     grid-auto-flow: column; }
   .text .letter {
     line-height: 1em;
+    pointer-events: none;
     -webkit-animation: pulse 15s ease-in-out infinite;
     animation: pulse 15s ease-in-out infinite; }
   .text .letter:nth-child(1) {
@@ -111,28 +114,30 @@ canvas {
       .text .social-icons a:first-child {
         margin-left: 0; }
       .text .social-icons a:nth-child(1) svg {
-        -webkit-animation-delay: 50ms;
-        animation-delay: 50ms; }
+        -webkit-animation-delay: calc(100ms + 50ms);
+        animation-delay: calc(100ms + 50ms); }
       .text .social-icons a:nth-child(2) svg {
-        -webkit-animation-delay: 100ms;
-        animation-delay: 100ms; }
+        -webkit-animation-delay: calc(100ms + 100ms);
+        animation-delay: calc(100ms + 100ms); }
       .text .social-icons a:nth-child(3) svg {
-        -webkit-animation-delay: 150ms;
-        animation-delay: 150ms; }
+        -webkit-animation-delay: calc(100ms + 150ms);
+        animation-delay: calc(100ms + 150ms); }
       .text .social-icons a:nth-child(4) svg {
-        -webkit-animation-delay: 200ms;
-        animation-delay: 200ms; }
+        -webkit-animation-delay: calc(100ms + 200ms);
+        animation-delay: calc(100ms + 200ms); }
       .text .social-icons a:nth-child(5) svg {
-        -webkit-animation-delay: 250ms;
-        animation-delay: 250ms; }
+        -webkit-animation-delay: calc(100ms + 250ms);
+        animation-delay: calc(100ms + 250ms); }
       .text .social-icons a svg {
         -webkit-animation: pulse 15s ease-in-out infinite;
         animation: pulse 15s ease-in-out infinite;
         -webkit-transition: 0.5s ease-in;
         -o-transition: 0.5s ease-in;
         transition: 0.5s ease-in; }
+      .text .social-icons a.twitter:hover svg {
+        color: #1da1f2; }
   .text .twitter:hover svg {
-    color: #1da1f2; }
+    color: #1da1f2 !important; }
   .text .instagram:hover svg {
     color: #e1306c; }
   .text .github:hover svg {
@@ -170,7 +175,7 @@ canvas {
   45% {
     color: rgba(15, 15, 15, 0.8); }
   50% {
-    color: rgba(75, 75, 75, 0.8); }
+    color: rgba(255, 255, 255, 0.5); }
   55% {
     color: rgba(15, 15, 15, 0.8); }
   100% {
@@ -182,7 +187,7 @@ canvas {
   45% {
     color: rgba(15, 15, 15, 0.8); }
   50% {
-    color: rgba(75, 75, 75, 0.8); }
+    color: rgba(255, 255, 255, 0.5); }
   55% {
     color: rgba(15, 15, 15, 0.8); }
   100% {

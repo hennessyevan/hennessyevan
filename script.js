@@ -2,7 +2,12 @@
 
 anime.timeline({ loop: false }).add({
 	targets: ".title .letter, .instructions, .social-icons",
-	translateY: [100, 0],
+	translateY: [
+		function() {
+			return anime.random(-100, 100);
+		},
+		0
+	],
 	translateZ: 0,
 	opacity: [0, 1],
 	easing: "easeOutExpo",
