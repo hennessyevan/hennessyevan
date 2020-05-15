@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  background: linear-gradient(
+    to right bottom,
+    var(--background),
+    var(--background-end)
+  );
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 700;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+@media (min-width: 400px) {
+  body {
+    font-size: 16px;
+  }
+}
