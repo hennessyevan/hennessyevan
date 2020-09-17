@@ -1,4 +1,5 @@
-### Hi there 👋 I'm Evan Hennessy a Fullstack Developer
+## Hi there 👋 I'm Evan Hennessy a UI Engineer Based out of Toronto Canada
 
-- 🌱 I’m currently learning Swift
-- 👯 I’m looking to collaborate on AST projects
+- 🌱 I’m currently working on some apps in Swift with SwiftUI
+- 💙 I love design systems and maintain some open source ones here.
+- 👯 I’m looking to collaborate on projects that use ASTs
