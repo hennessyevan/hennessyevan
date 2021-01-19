@@ -7,9 +7,9 @@ I have been waiting a longtime to hearken the arrival of this beautiful CSS feat
 
 In case you’ve never heard of it, `backdrop-filter` is a CSS feature defined in the [CSS Filter Effect Level 2 Spec](https://drafts.fxtf.org/filter-effects-2/#BackdropFilterProperty). You can see what it is trying to achieve by looking at the blurred UI elements of [iOS7+, macOS Yosemite+, Windows 10 Fluent Design] etc.
 
-![](https://cdn-images-1.medium.com/max/600/1*n13J0Mdv3ckYviYI9tcyAA.png)
+![](img/1*n13J0Mdv3ckYviYI9tcyAA.png)
 
-![](https://cdn-images-1.medium.com/max/600/1*wJenRSkH5lkl-OoOEMMvog.png)
+![](img/1*wJenRSkH5lkl-OoOEMMvog.png)
 
 _Apple added browser support for this feature alongside their vibrancy/translucency_ [_design guideline updates_](https://developer.apple.com/macos/human-interface-guidelines/visual-design/translucency/) _of iOS7 and macOS 10.10…_
 

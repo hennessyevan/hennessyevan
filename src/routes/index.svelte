@@ -13,7 +13,7 @@
 
 <style>
   h1 {
-    font-size: 5rem;
+    font-size: clamp(3rem, 10vw, 5rem);
     margin: 0;
   }
 
@@ -37,7 +37,8 @@
     padding: 0;
     padding-block-start: 32px;
     display: grid;
-    grid-template-columns: repeat(2, 275px);
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    max-width: 768px;
     gap: 56px 48px;
   }
 
@@ -56,6 +57,7 @@
 <section>
   <span class="supertext">Hi 👋 I'm</span>
   <h1>Evan Hennessy</h1>
+  <a href="/about" rel="prefetch">About Me</a>
 
   <div id="posts" role="feed" aria-labelledby="recent-post-title">
     <h4 id="recent-post-title">Recent Posts</h4>

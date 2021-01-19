@@ -11,7 +11,40 @@ Websites come in all shapes and sizes: big ones, small ones, bland ones, overly-
 
 I can’t be alone here. In fact I know I’m not. This is a graph made from web statistics gathered by Harris Interactive on behalf of TeaLeaf.
 
-![](img/mobilerage.png "Statistics based on 1000 people")
+```js exec
+import Pie from '../../components/Pie.svelte'
+
+let data = [
+  {
+    color: 'var(--indigo)',
+    label: '23%',
+    legend: 'Curse at their phone',
+    size: 23,
+  },
+  {
+    color: 'var(--teal)',
+    label: '11%',
+    size: 11,
+    legend: 'Scream at their phone',
+  },
+  {
+    color: 'var(--green)',
+    label: '4%',
+    size: 4,
+    legend: 'Throw their phone',
+  },
+  {
+    color: 'var(--orange)',
+    label: '62%',
+    size: 62,
+    legend: 'Behave more or less normally',
+  },
+]
+```
+
+### How people react to slow load times
+
+<Pie segments={data} />
 
 > There are people out there throwing their phones because the websites they visit are so frustrating!
 

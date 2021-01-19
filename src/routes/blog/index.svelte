@@ -19,7 +19,8 @@
     padding: 0;
     padding-block-start: 32px;
     display: grid;
-    grid-template-columns: repeat(2, 275px);
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    max-width: 768px;
     gap: 56px 48px;
   }
 </style>

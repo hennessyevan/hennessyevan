@@ -1,21 +1,23 @@
-import resolve from "@rollup/plugin-node-resolve"
-import replace from "@rollup/plugin-replace"
-import * as path from "path"
-import commonjs from "@rollup/plugin-commonjs"
-import svelte from "rollup-plugin-svelte"
-import babel from "rollup-plugin-babel"
-import { terser } from "rollup-plugin-terser"
-import config from "sapper/config/rollup.js"
-import sveltePreprocess from "svelte-preprocess"
-import pkg from "./package.json"
-import { mdsvex } from "mdsvex"
+import resolve from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
+import * as path from 'path'
+import commonjs from '@rollup/plugin-commonjs'
+import svelte from 'rollup-plugin-svelte'
+import babel from 'rollup-plugin-babel'
+import { terser } from 'rollup-plugin-terser'
+import config from 'sapper/config/rollup.js'
+import sveltePreprocess from 'svelte-preprocess'
+import pkg from './package.json'
+import json from '@rollup/plugin-json'
+import { mdsvex } from 'mdsvex'
+import markdownItTocAndAnchor from 'markdown-it-toc-and-anchor'
 
 const mode = process.env.NODE_ENV
-const dev = mode === "development"
+const dev = mode === 'development'
 const legacy = !!process.env.SAPPER_LEGACY_BUILD
 
 const onwarn = (warning, onwarn) =>
-  (warning.code === "CIRCULAR_DEPENDENCY" &&
+  (warning.code === 'CIRCULAR_DEPENDENCY' &&
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   onwarn(warning)
 
@@ -24,8 +26,16 @@ const preprocess = [
     postcss: true,
   }),
   mdsvex({
-    extension: ".svx",
-    layout: path.join(__dirname, "./src/components/DefaultLayout.svelte"),
+    extension: '.svx',
+    layout: path.join(__dirname, './src/components/DefaultLayout.svelte'),
+    parser: (md) =>
+      md.use(markdownItTocAndAnchor, {
+        tocClassName: 'table-of-contents',
+        tocFirstLevel: 2,
+        tocLastLevel: 4,
+        anchorClassName: 'anchor-heading',
+        wrapHeadingTextInAnchor: true,
+      }),
     markdownOptions: {
       html: true,
       typographer: true,
@@ -39,40 +49,41 @@ export default {
     input: config.client.input(),
     output: config.client.output(),
     plugins: [
+      json(),
       replace({
-        "process.browser": true,
-        "process.env.NODE_ENV": JSON.stringify(mode),
+        'process.browser': true,
+        'process.env.NODE_ENV': JSON.stringify(mode),
       }),
       svelte({
         dev,
-        extensions: [".svelte", ".svx"],
+        extensions: ['.svelte', '.svx'],
         preprocess,
         hydratable: true,
         emitCss: true,
       }),
       resolve({
         browser: true,
-        dedupe: ["svelte"],
+        dedupe: ['svelte'],
       }),
       commonjs(),
 
       legacy &&
         babel({
-          extensions: [".js", ".mjs", ".html", ".svelte"],
+          extensions: ['.js', '.mjs', '.html', '.svelte'],
           runtimeHelpers: true,
-          exclude: ["node_modules/@babel/**"],
+          exclude: ['node_modules/@babel/**'],
           presets: [
             [
-              "@babel/preset-env",
+              '@babel/preset-env',
               {
-                targets: "> 0.25%, not dead",
+                targets: '> 0.25%, not dead',
               },
             ],
           ],
           plugins: [
-            "@babel/plugin-syntax-dynamic-import",
+            '@babel/plugin-syntax-dynamic-import',
             [
-              "@babel/plugin-transform-runtime",
+              '@babel/plugin-transform-runtime',
               {
                 useESModules: true,
               },
@@ -93,25 +104,29 @@ export default {
     input: config.server.input(),
     output: config.server.output(),
     plugins: [
+      json(),
       replace({
-        "process.browser": false,
-        "process.env.NODE_ENV": JSON.stringify(mode),
+        'process.browser': false,
+        'process.env.NODE_ENV': JSON.stringify(mode),
       }),
       svelte({
-        extensions: [".svelte", ".svx"],
+        extensions: ['.svelte', '.svx'],
         preprocess,
-        generate: "ssr",
+        generate: 'ssr',
         dev,
       }),
       resolve({
-        dedupe: ["svelte"],
+        dedupe: ['svelte'],
       }),
       commonjs(),
     ],
-    external: Object.keys(pkg.dependencies).concat(
-      require("module").builtinModules ||
-        Object.keys(process.binding("natives"))
-    ),
+    external: [
+      ...Object.keys(pkg.dependencies).concat(
+        require('module').builtinModules ||
+          Object.keys(process.binding('natives'))
+      ),
+      'sharp',
+    ],
 
     onwarn,
   },
@@ -122,8 +137,8 @@ export default {
     plugins: [
       resolve(),
       replace({
-        "process.browser": true,
-        "process.env.NODE_ENV": JSON.stringify(mode),
+        'process.browser': true,
+        'process.env.NODE_ENV': JSON.stringify(mode),
       }),
       commonjs(),
       !dev && terser(),

@@ -1,6 +1,13 @@
 <script>
   import Time from "./Time.svelte";
 
+  import { onMount } from "svelte";
+  onMount(async () => {
+    [...document.querySelectorAll('a[href^="#"]')].map(
+      x => (x.href = document.location + new URL(x.href).hash)
+    );
+  });
+
   export let title;
   export let image;
   export let date = new Date().toString();
@@ -61,7 +68,7 @@
   }
 
   .title.big {
-    font-size: 3rem;
+    font-size: clamp(2rem, 3vw, 3rem);
   }
 
   .content :global(img) {
@@ -80,6 +87,11 @@
 
   .content :global(a):hover {
     text-decoration: underline;
+  }
+
+  :global(.anchor-heading) {
+    text-decoration: none;
+    color: var(--text);
   }
 </style>
 
