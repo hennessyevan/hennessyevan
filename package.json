@@ -1,0 +1,33 @@
+{
+  "name": "hennessyevan",
+  "version": "0.0.0",
+  "description": "Evan Hennessy's Personal Website",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "demos": "cd demos && vite"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "^12.2.3",
+    "@radix-ui/colors": "^3.0.0",
+    "astro": "^5.4.1",
+    "fast-glob": "^3.3.3",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0",
+    "vite-plugin-list-directory-contents": "^1.4.5"
+  },
+  "author": "Evan Hennessy",
+  "license": "UNLICENSED",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "^1.2.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

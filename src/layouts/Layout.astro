@@ -1,0 +1,32 @@
+---
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import styleURL from '../style.css?url'
+
+interface Props {
+  title?: string
+}
+
+const { title } = Astro.props
+const titleTemplate = title ? `${title} | Evan Hennessy` : 'Evan Hennessy'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="stylesheet" href={styleURL} />
+    <title>{titleTemplate}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
