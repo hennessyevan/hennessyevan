@@ -5,9 +5,13 @@ import styleURL from '../style.css?url'
 
 interface Props {
   title?: string
+  description?: string | undefined
 }
 
-const { title } = Astro.props
+const {
+  title,
+  description = 'Evan Hennessy: software engineer and designer in Kitchener-Waterloo, writing about Catholic software, the liturgy and building things that respect the family.',
+} = Astro.props
 const titleTemplate = title ? `${title} | Evan Hennessy` : 'Evan Hennessy'
 ---
 
@@ -15,7 +19,10 @@ const titleTemplate = title ? `${title} | Evan Hennessy` : 'Evan Hennessy'
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    {title && <meta property="og:title" content={title} />}
+    <meta property="og:description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
