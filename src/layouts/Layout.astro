@@ -23,7 +23,7 @@ const {
 const titleTemplate = title ? `${title} | Evan Hennessy` : 'Evan Hennessy'
 const canonical = new URL(Astro.url.pathname, Astro.site).href
 
-// The same Person is referenced from domestic-church.app (founder, author) by this @id.
+// Site-wide identity: posts reference this Person by @id.
 const graph = [
   {
     '@type': 'Person',
