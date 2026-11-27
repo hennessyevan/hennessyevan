@@ -6,13 +6,43 @@ import styleURL from '../style.css?url'
 interface Props {
   title?: string
   description?: string | undefined
+  /** 'article' for blog posts (og:type), 'website' otherwise. */
+  type?: 'website' | 'article'
+  /** Extra JSON-LD nodes for this page, merged into the site-wide @graph. */
+  schema?: Record<string, unknown>[]
+  noindex?: boolean
 }
 
 const {
   title,
   description = 'Evan Hennessy: software engineer and designer in Kitchener-Waterloo, writing about Catholic software, the liturgy and building things that respect the family.',
+  type = 'website',
+  schema = [],
+  noindex = false,
 } = Astro.props
 const titleTemplate = title ? `${title} | Evan Hennessy` : 'Evan Hennessy'
+const canonical = new URL(Astro.url.pathname, Astro.site).href
+
+// The same Person is referenced from domestic-church.app (founder, author) by this @id.
+const graph = [
+  {
+    '@type': 'Person',
+    '@id': 'https://hennessyevan.com/#person',
+    name: 'Evan Hennessy',
+    url: 'https://hennessyevan.com/',
+    jobTitle: 'Director of Research & Development',
+    worksFor: { '@type': 'Organization', name: 'Glass Canvas', url: 'https://www.glasscanvas.io' },
+    sameAs: ['https://github.com/hennessyevan', 'https://www.linkedin.com/in/hennessyevan/'],
+  },
+  {
+    '@type': 'WebSite',
+    '@id': 'https://hennessyevan.com/#website',
+    name: 'Evan Hennessy',
+    url: 'https://hennessyevan.com/',
+    author: { '@id': 'https://hennessyevan.com/#person' },
+  },
+  ...schema,
+]
 ---
 
 <!doctype html>
@@ -20,9 +50,15 @@ const titleTemplate = title ? `${title} | Evan Hennessy` : 'Evan Hennessy'
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
-    {title && <meta property="og:title" content={title} />}
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Evan Hennessy" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title ?? 'Evan Hennessy'} />
     <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })} />}
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
